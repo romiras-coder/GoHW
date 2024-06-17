@@ -8,19 +8,17 @@ import (
 
 var ErrInvalidString = errors.New("invalid string")
 
-// Структура для подсчета символов и их повторений
-//  типа {"a": 1, "b": 4, "c": 0}
+// Структура для подсчета символов и их повторений, типа {"a": 1, "b": 4, "c": 0}.
 type charCounter struct {
 	charItem string // символ
 	cntItem  int    // кол-во
 }
 
-// Парсинг строки на струкруты
+// Парсинг строки на струкруты.
 func generateItem(data []rune) ([]charCounter, error) {
 	result := make([]charCounter, 0)
 	for i := 0; i < len(data); i++ {
-
-		// Если первый символ число - возвращаем ошибку
+		// Если первый символ число - возвращаем ошибку.
 		if unicode.IsDigit(data[i]) {
 			return nil, ErrInvalidString
 		}
@@ -37,11 +35,9 @@ func generateItem(data []rune) ([]charCounter, error) {
 	return result, nil
 }
 
-// Unpack Распаковка строки
+// Unpack Распаковка строки.
 func Unpack(packingString string) (string, error) {
-
 	tokens, err := generateItem([]rune(packingString))
-
 	if err != nil {
 		return "", ErrInvalidString
 	}
